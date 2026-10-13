@@ -44,6 +44,7 @@ image-to-text-ocr/
 │   ├── languages.js              # OCR language → HTML lang/dir mapping
 │   ├── theme.js                  # Light/dark toggle
 │   ├── site.js                   # Theme toggle + year for pages without the converter
+│   ├── analytics.js              # Google Analytics 4 config + consent defaults (no inline scripts)
 │   └── utils.js                  # Script loader, formatting, counting
 ├── assets/                       # favicon.svg, apple-touch-icon.png, og-image.jpg
 ├── docs/                         # Audit report, SEO keyword map, Search Console, AdSense, load testing
@@ -114,7 +115,7 @@ See `docs/SEARCH-CONSOLE.md` for Google Search Console setup.
 
 - Images and extracted text are processed locally in your browser and are **never uploaded** to this site's server or any OCR service.
 - The only network requests are for the site's own files and the open-source OCR library, engine and language data from `cdn.jsdelivr.net` (plus the TIFF decoder if you open a TIFF). jsDelivr receives standard request information (such as your IP address) when serving these files.
-- No analytics or trackers. The site loads the Google AdSense script (see `docs/ADSENSE.md`), which may set advertising cookies; the site's own code sets none. The only thing the site itself stores is your light/dark theme choice (in `localStorage`). Tesseract.js also caches downloaded language data in your browser's IndexedDB to speed up later runs.
+- The site loads Google Analytics 4 (`G-B466MK3LQ1`, configured in `js/analytics.js` with consent-mode defaults for the EEA/UK/Switzerland) and Google AdSense (see `docs/ADSENSE.md`); both may set cookies. Only page views are measured — images and extracted text are never sent. The site's own code sets no cookies. The only thing the site itself stores is your light/dark theme choice (in `localStorage`). Tesseract.js also caches downloaded language data in your browser's IndexedDB to speed up later runs.
 
 ## Known limitations
 

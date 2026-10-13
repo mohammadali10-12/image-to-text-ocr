@@ -8,6 +8,7 @@ Approval is never guaranteed.
 - ✅ `ads.txt` published at the site root: `google.com, pub-7768945509942907, DIRECT, f08c47fec0942fa0`.
 - ✅ CSP extended for Google ad domains (`script-src`, `connect-src`, `frame-src`, `fenced-frame-src`, `img-src https:`, `style-src 'unsafe-inline'` for ad styling); COOP set to `same-origin-allow-popups`.
 - ✅ Privacy Policy and homepage updated with the required AdSense cookie disclosures.
+- ✅ Google Analytics 4 (`G-B466MK3LQ1`) on all pages via `js/analytics.js`, with consent mode defaulting to *denied* for the EEA, UK and Switzerland; CSP allows `www.googletagmanager.com` and Google Analytics endpoints. Privacy Policy has an Analytics section.
 - ⏳ Site verification and review in AdSense — your action.
 - ⏳ Consent message (Privacy & messaging → European regulations) — your action.
 - ⏳ Ad units: the `.ad-slot` containers are still hidden. After approval, either place units in them (step 3 below) or use Auto ads — if you use Auto ads, check on mobile that no ad appears inside or right next to the converter.
