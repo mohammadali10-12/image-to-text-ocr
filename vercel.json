@@ -1,7 +1,83 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/hindi-image-to-text.html",
+      "destination": "/hindi-image-to-text",
+      "permanent": true
+    },
+    {
+      "source": "/gujarati-image-to-text.html",
+      "destination": "/gujarati-image-to-text",
+      "permanent": true
+    },
+    {
+      "source": "/urdu-image-to-text.html",
+      "destination": "/urdu-image-to-text",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/hindi-image-to-text",
+      "destination": "/hindi-image-to-text.html"
+    },
+    {
+      "source": "/gujarati-image-to-text",
+      "destination": "/gujarati-image-to-text.html"
+    },
+    {
+      "source": "/urdu-image-to-text",
+      "destination": "/urdu-image-to-text.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

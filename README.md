@@ -105,7 +105,7 @@ Or open the folder in VS Code and use the **Live Server** extension. Simple serv
    - Install command: *(none)*
 4. Deploy. Every push to `main` triggers a new production deployment.
 
-`vercel.json` enables clean URLs (`/about` instead of `/about.html`), adds security headers (Content-Security-Policy allowing only this site and `cdn.jsdelivr.net`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS) and short caching for CSS/JS. Scripts loaded from jsDelivr are pinned to exact versions, and the main library and TIFF decoder are checked with Subresource Integrity hashes.
+`vercel.json` serves clean URLs (`/about` instead of `/about.html`) through explicit rewrites and redirects — add a pair for any new page — adds security headers (Content-Security-Policy allowing only this site and `cdn.jsdelivr.net`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS) and short caching for CSS/JS. Scripts loaded from jsDelivr are pinned to exact versions, and the main library and TIFF decoder are checked with Subresource Integrity hashes.
 
 > **Commercial use:** Vercel's Hobby plan is for non-commercial use only, and advertising (including Google AdSense) counts as commercial use. See `docs/ADSENSE.md` before adding ads.
 
