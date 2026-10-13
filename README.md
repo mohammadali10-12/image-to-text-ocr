@@ -114,7 +114,7 @@ See `docs/SEARCH-CONSOLE.md` for Google Search Console setup.
 
 - Images and extracted text are processed locally in your browser and are **never uploaded** to this site's server or any OCR service.
 - The only network requests are for the site's own files and the open-source OCR library, engine and language data from `cdn.jsdelivr.net` (plus the TIFF decoder if you open a TIFF). jsDelivr receives standard request information (such as your IP address) when serving these files.
-- No analytics, ads, cookies or trackers. The only thing stored is your light/dark theme choice (in `localStorage`). Tesseract.js also caches downloaded language data in your browser's IndexedDB to speed up later runs.
+- No analytics or trackers. The site loads the Google AdSense script (see `docs/ADSENSE.md`), which may set advertising cookies; the site's own code sets none. The only thing the site itself stores is your light/dark theme choice (in `localStorage`). Tesseract.js also caches downloaded language data in your browser's IndexedDB to speed up later runs.
 
 ## Known limitations
 

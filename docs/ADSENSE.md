@@ -1,6 +1,19 @@
 # Google AdSense readiness
 
-Approval is never guaranteed. This document lists what is ready, what blocks applying today, and the exact changes to make **after** you have an approved AdSense account and publisher ID. No ad code, publisher ID or `ads.txt` has been added to the site.
+Approval is never guaranteed.
+
+## Current status (13 October 2026)
+
+- ✅ AdSense code for publisher `ca-pub-7768945509942907` is in the `<head>` of all 8 indexable pages (not the 404 page).
+- ✅ `ads.txt` published at the site root: `google.com, pub-7768945509942907, DIRECT, f08c47fec0942fa0`.
+- ✅ CSP extended for Google ad domains (`script-src`, `connect-src`, `frame-src`, `fenced-frame-src`, `img-src https:`, `style-src 'unsafe-inline'` for ad styling); COOP set to `same-origin-allow-popups`.
+- ✅ Privacy Policy and homepage updated with the required AdSense cookie disclosures.
+- ⏳ Site verification and review in AdSense — your action.
+- ⏳ Consent message (Privacy & messaging → European regulations) — your action.
+- ⏳ Ad units: the `.ad-slot` containers are still hidden. After approval, either place units in them (step 3 below) or use Auto ads — if you use Auto ads, check on mobile that no ad appears inside or right next to the converter.
+- ⚠️ Vercel Hobby plan does not permit ads (see blocker 1).
+
+The sections below were written before the code was added and remain the reference for the remaining steps.
 
 ## Blockers to resolve first (your action)
 
