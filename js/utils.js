@@ -3,10 +3,10 @@
 const scriptCache = new Map();
 
 /**
- * Loads a classic script once and resolves when it has executed.
+ * Loads a classic script once (optionally with an SRI hash) and resolves when it has executed.
  * Failed loads are not cached so they can be retried.
  */
-export function loadScript(src) {
+export function loadScript(src, integrity = '') {
   if (scriptCache.has(src)) return scriptCache.get(src);
 
   const promise = new Promise((resolve, reject) => {
@@ -14,6 +14,9 @@ export function loadScript(src) {
     script.src = src;
     script.async = true;
     script.crossOrigin = 'anonymous';
+    // Subresource Integrity: the browser refuses the file if its contents were altered.
+    if (integrity) script.integrity = integrity;
+    script.referrerPolicy = 'no-referrer';
     script.addEventListener('load', () => resolve());
     script.addEventListener('error', () => {
       script.remove();

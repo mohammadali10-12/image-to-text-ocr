@@ -27,22 +27,34 @@ Built as a static website with plain HTML, CSS and JavaScript — no framework, 
 
 ```text
 image-to-text-ocr/
-├── index.html            # Page markup (header, hero, workspace, info sections, footer)
-├── css/
-│   └── style.css         # All styles, light/dark tokens, responsive rules
+├── index.html                    # Homepage: converter + how-to, languages, formats, tips, FAQ
+├── hindi-image-to-text.html      # Language guides with the converter preselected
+├── gujarati-image-to-text.html   #   (<body data-ocr-lang="…">)
+├── urdu-image-to-text.html
+├── about.html, contact.html, privacy.html, terms.html
+├── 404.html                      # Served by Vercel for unknown URLs (noindex)
+├── robots.txt, sitemap.xml
+├── favicon.ico
+├── css/style.css                 # All styles, light/dark tokens, responsive rules
 ├── js/
-│   ├── theme-init.js     # Applies the saved theme before first paint
-│   ├── app.js            # UI controller: uploads, queue, OCR runs, text actions
-│   ├── ocr-engine.js     # Lazy Tesseract.js loading and worker lifecycle
-│   ├── image-loader.js   # Validation, decoding (incl. TIFF), rotation, enhancement
-│   ├── theme.js          # Light/dark toggle
-│   └── utils.js          # Small helpers (script loader, formatting, counting)
-├── assets/
-│   └── favicon.svg
-├── vercel.json           # Security headers and caching
-├── .gitignore
+│   ├── theme-init.js             # Applies the saved theme before first paint
+│   ├── app.js                    # Converter UI: uploads, queue, OCR runs, text actions
+│   ├── ocr-engine.js             # Lazy Tesseract.js loading (SRI) and worker lifecycle
+│   ├── image-loader.js           # Validation (magic bytes, pixel limit), on-demand decoding, TIFF
+│   ├── languages.js              # OCR language → HTML lang/dir mapping
+│   ├── theme.js                  # Light/dark toggle
+│   ├── site.js                   # Theme toggle + year for pages without the converter
+│   └── utils.js                  # Script loader, formatting, counting
+├── assets/                       # favicon.svg, apple-touch-icon.png, og-image.jpg
+├── docs/                         # Audit report, SEO keyword map, Search Console, AdSense, load testing
+├── vercel.json                   # Clean URLs, security headers, caching
+├── .vercelignore                 # Keeps README.md and docs/ off the public site
 └── README.md
 ```
+
+The header, footer and converter markup are repeated in each page that uses them (there is no build step). When you change one of them, apply the same change to `index.html` and the three language pages.
+
+The production URL `https://image-to-text-ocr-ten.vercel.app` is written into canonical tags, Open Graph tags, JSON-LD, `robots.txt` and `sitemap.xml`. If you move to a custom domain, search the repository for it and replace every occurrence.
 
 ## How the OCR works
 
@@ -60,7 +72,7 @@ image-to-text-ocr/
 | GIF | First frame only |
 | TIFF / TIF | First page; decoded in the browser with UTIF.js (common compressions such as uncompressed, LZW, PackBits and Deflate; some unusual TIFF variants may fail and should be converted to PNG) |
 
-Limits: 10 MB per file, 10 images per batch. SVG, HEIC and PDF are not supported.
+Limits: 10 MB and 50 megapixels per file, 10 images per batch. The real format is checked from the file's contents, not just its name. SVG, HEIC and PDF are not supported.
 
 ## Language support and limitations
 
@@ -79,7 +91,7 @@ python3 -m http.server 8080
 # then open http://localhost:8080
 ```
 
-Or open the folder in VS Code and use the **Live Server** extension. An internet connection is required the first time OCR runs, to download the engine and language data from jsDelivr.
+Or open the folder in VS Code and use the **Live Server** extension. Simple servers don't support Vercel's clean URLs, so open the other pages with their `.html` name locally (for example `/about.html`); on Vercel they are served at `/about`. An internet connection is required the first time OCR runs, to download the engine and language data from jsDelivr.
 
 ## Deploy to Vercel
 
@@ -92,7 +104,11 @@ Or open the folder in VS Code and use the **Live Server** extension. An internet
    - Install command: *(none)*
 4. Deploy. Every push to `main` triggers a new production deployment.
 
-`vercel.json` adds security headers (Content-Security-Policy allowing only this site and `cdn.jsdelivr.net`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS) and short caching for CSS/JS.
+`vercel.json` enables clean URLs (`/about` instead of `/about.html`), adds security headers (Content-Security-Policy allowing only this site and `cdn.jsdelivr.net`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS) and short caching for CSS/JS. Scripts loaded from jsDelivr are pinned to exact versions, and the main library and TIFF decoder are checked with Subresource Integrity hashes.
+
+> **Commercial use:** Vercel's Hobby plan is for non-commercial use only, and advertising (including Google AdSense) counts as commercial use. See `docs/ADSENSE.md` before adding ads.
+
+See `docs/SEARCH-CONSOLE.md` for Google Search Console setup.
 
 ## Privacy
 

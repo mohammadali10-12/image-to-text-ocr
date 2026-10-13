@@ -10,6 +10,8 @@ const CDN = 'https://cdn.jsdelivr.net/npm';
 
 export const OCR_URLS = Object.freeze({
   library: `${CDN}/tesseract.js@${TESSERACT_VERSION}/dist/tesseract.min.js`,
+  // SHA-384 of tesseract.js@7.0.0/dist/tesseract.min.js (verified against jsDelivr's published hash).
+  libraryIntegrity: 'sha384-2BQ3U3OdKOb0Uczxqr41I9UvZkzr4V9Hv8uSzMMZAlmhsFClvdZX5wi5fDCzG+tM',
   worker: `${CDN}/tesseract.js@${TESSERACT_VERSION}/dist/worker.min.js`,
   core: `${CDN}/tesseract.js-core@${CORE_VERSION}`,
 });
@@ -56,7 +58,7 @@ function describeStatus(status) {
 async function loadLibrary() {
   if (window.Tesseract) return window.Tesseract;
   try {
-    await loadScript(OCR_URLS.library);
+    await loadScript(OCR_URLS.library, OCR_URLS.libraryIntegrity);
   } catch {
     throw new OcrError('The OCR engine could not be downloaded. Check your internet connection and try again.', 'network');
   }

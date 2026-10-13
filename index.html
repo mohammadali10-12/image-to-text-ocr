@@ -3,33 +3,90 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ImageToText OCR — Convert Images to Text in Your Browser</title>
-  <meta name="description" content="Free image to text converter. Extract text from JPG, PNG, WebP, BMP and TIFF images with OCR that runs entirely in your browser. Your images stay on your device.">
+  <title>Image to Text Converter – Free Online OCR | ImageToText OCR</title>
+  <meta name="description" content="Extract text from images online for free. Convert JPG, PNG, WebP and screenshots into editable text with multilingual OCR that runs directly in your browser.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://image-to-text-ocr-ten.vercel.app/">
   <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0f1220" media="(prefers-color-scheme: dark)">
-  <meta property="og:title" content="ImageToText OCR">
-  <meta property="og:description" content="Extract text from images right in your browser. No uploads, no sign-up.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="ImageToText OCR">
+  <meta property="og:title" content="Image to Text Converter – Free Online OCR | ImageToText OCR">
+  <meta property="og:description" content="Extract text from images online for free. Convert JPG, PNG, WebP and screenshots into editable text with multilingual OCR that runs directly in your browser.">
+  <meta property="og:url" content="https://image-to-text-ocr-ten.vercel.app/">
+  <meta property="og:image" content="https://image-to-text-ocr-ten.vercel.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ImageToText OCR — free image to text converter that runs in your browser">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image to Text Converter – Free Online OCR | ImageToText OCR">
+  <meta name="twitter:description" content="Extract text from images online for free. Convert JPG, PNG, WebP and screenshots into editable text with multilingual OCR that runs directly in your browser.">
+  <meta name="twitter:image" content="https://image-to-text-ocr-ten.vercel.app/assets/og-image.jpg">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <!-- Applies the saved theme before first paint to avoid a flash. -->
-  <script src="js/theme-init.js"></script>
-  <script type="module" src="js/app.js"></script>
+  <script src="/js/theme-init.js"></script>
+  <link rel="modulepreload" href="/js/theme.js">
+  <link rel="modulepreload" href="/js/ocr-engine.js">
+  <link rel="modulepreload" href="/js/image-loader.js">
+  <link rel="modulepreload" href="/js/utils.js">
+  <link rel="modulepreload" href="/js/languages.js">
+  <script type="module" src="/js/app.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ImageToText OCR",
+    "url": "https://image-to-text-ocr-ten.vercel.app/",
+    "inLanguage": "en",
+    "description": "Extract text from images online for free. Convert JPG, PNG, WebP and screenshots into editable text with multilingual OCR that runs directly in your browser."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ImageToText OCR",
+    "url": "https://image-to-text-ocr-ten.vercel.app/",
+    "description": "Browser-based image to text (OCR) converter. Images are processed on the user’s device with Tesseract.js.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (modern web browser)",
+    "browserRequirements": "Requires JavaScript and WebAssembly",
+    "isAccessibleForFree": true,
+    "inLanguage": "en",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Extract text from JPG, PNG, WebP, BMP, GIF and TIFF images",
+      "OCR in 17 languages including English, Hindi, Gujarati and Urdu",
+      "Batch processing of up to 10 images",
+      "Edit, copy or download the extracted text as a .txt file",
+      "Processing happens locally in the browser"
+    ]
+  }
+  </script>
 </head>
 <body>
-  <a class="skip-link" href="#workspace">Skip to the converter</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="ImageToText OCR home">
-        <img src="assets/favicon.svg" alt="" width="32" height="32">
+      <a class="brand" href="/" aria-label="ImageToText OCR home">
+        <img src="/assets/favicon.svg" alt="" width="32" height="32">
         <span>ImageToText <strong>OCR</strong></span>
       </a>
       <nav class="site-nav" aria-label="Primary">
-        <a href="#top">Home</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#about">About</a>
+        <a href="/" aria-current="page">Home</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#languages">Languages</a>
+        <a href="/about">About</a>
       </nav>
       <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Toggle dark mode">
         <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/></svg>
@@ -38,12 +95,12 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-inner">
-        <p class="eyebrow">Free browser-based OCR</p>
-        <h1 id="hero-title">Convert Images to Text Instantly</h1>
-        <p class="hero-lead">Upload a photo, screenshot or scan and pull out the text in seconds. Edit the result, copy it, or save it as a .txt file — all processed by OCR running inside your browser.</p>
+        <p class="eyebrow">Free online OCR · 17 languages</p>
+        <h1 id="hero-title">Free Image to Text Converter</h1>
+        <p class="hero-lead">Convert images to text instantly. Upload a photo, screenshot or scan, extract the text with OCR running inside your browser, then edit, copy or download it as a .txt file.</p>
         <div class="hero-actions">
           <button class="btn btn-primary btn-lg" id="hero-cta" type="button">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M8 9h8M8 12h8M8 15h5"/></svg>
@@ -88,14 +145,15 @@
               </div>
             </div>
 
+            <label for="file-input" class="visually-hidden">Choose images</label>
             <input type="file" id="file-input" class="visually-hidden" multiple
                    accept=".jpg,.jpeg,.png,.webp,.bmp,.gif,.tif,.tiff,image/jpeg,image/png,image/webp,image/bmp,image/gif,image/tiff"
                    aria-describedby="dropzone-hint" tabindex="-1">
 
-            <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-describedby="dropzone-hint" aria-label="Choose images to extract text from, or drop them here">
+            <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-describedby="dropzone-hint">
               <svg class="dropzone-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="9" width="36" height="30" rx="4"/><circle cx="17" cy="19" r="3.5"/><path d="m8 35 11-11 8 8 5-5 10 10"/></svg>
               <p class="dropzone-title"><strong>Drop images here</strong> or <span class="link-like">browse files</span></p>
-              <p class="dropzone-hint" id="dropzone-hint">JPG, PNG, WebP, BMP, GIF or TIFF · up to 10&nbsp;MB each · up to 10 images. You can also paste with <kbd>Ctrl</kbd>+<kbd>V</kbd>.</p>
+              <p class="dropzone-hint" id="dropzone-hint">JPG, PNG, WebP, BMP, GIF or TIFF · up to 10&nbsp;MB and 50 megapixels each · up to 10 images. You can also paste with <kbd>Ctrl</kbd>+<kbd>V</kbd>.</p>
             </div>
 
             <div class="preview" id="preview" hidden>
@@ -171,7 +229,7 @@
 
             <div class="editor">
               <label for="output-text" class="visually-hidden">Extracted text (editable)</label>
-              <textarea id="output-text" class="editor-textarea" spellcheck="false" dir="auto" placeholder=""></textarea>
+              <textarea id="output-text" class="editor-textarea" spellcheck="false" dir="auto"></textarea>
               <div class="empty-state" id="empty-state">
                 <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 6h16l10 10v24a2 2 0 0 1-2 2H13a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><path d="M29 6v10h10M17 25h14M17 31h14M17 19h6"/></svg>
                 <p class="empty-title" id="empty-title">Your text will appear here</p>
@@ -197,53 +255,131 @@
       </div>
     </section>
 
+    <aside class="ad-slot" data-ad-slot="home-after-workspace" aria-label="Advertisement" hidden>
+      <div class="container">
+        <p class="ad-label">Advertisement</p>
+        <div class="ad-slot-inner"></div>
+      </div>
+    </aside>
+
     <section class="section" id="how-it-works" aria-labelledby="how-title">
       <div class="container">
-        <h2 id="how-title" class="section-title">How it works</h2>
-        <ol class="steps">
+        <h2 id="how-title" class="section-title">How to convert an image to text</h2>
+        <ol class="steps steps-4">
           <li class="step-card">
             <span class="step-num" aria-hidden="true">1</span>
-            <h3>Upload</h3>
-            <p>Drop, browse or paste one or more images. Rotate them if the text is sideways and pick the language of the text.</p>
+            <h3>Add your image</h3>
+            <p>Drop an image on the upload area, choose <em>browse files</em>, or paste a screenshot with <kbd>Ctrl</kbd>+<kbd>V</kbd>. You can add up to 10 images.</p>
           </li>
           <li class="step-card">
             <span class="step-num" aria-hidden="true">2</span>
-            <h3>Extract</h3>
-            <p>Tesseract OCR runs in your browser and reads the text. The first run downloads the OCR engine and language data, so it takes a little longer.</p>
+            <h3>Pick the language</h3>
+            <p>Select the language of the text from the <em>OCR language</em> menu. Rotate the image if the text is sideways, and try <em>Enhance image</em> for faint text.</p>
           </li>
           <li class="step-card">
             <span class="step-num" aria-hidden="true">3</span>
-            <h3>Download</h3>
-            <p>Review and fix the text in the editor, then copy it to your clipboard or download it as a plain .txt file.</p>
+            <h3>Extract the text</h3>
+            <p>Choose <strong>Extract text</strong>. Progress is shown while the engine and language data load and the text is recognized.</p>
+          </li>
+          <li class="step-card">
+            <span class="step-num" aria-hidden="true">4</span>
+            <h3>Copy or download</h3>
+            <p>Fix any mistakes in the editor, then <strong>Copy text</strong> or <strong>Download TXT</strong>. Line breaks and paragraph gaps are kept where possible.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="section section-alt" id="formats" aria-labelledby="formats-title">
+    <section class="section section-alt" id="languages" aria-labelledby="languages-title">
+      <div class="container">
+        <h2 id="languages-title" class="section-title">Supported OCR languages</h2>
+        <p class="section-lead">Choose any of these 17 languages in the converter. Each language’s data is downloaded only when you first use it — for example about 2.9&nbsp;MB for English, 1.4&nbsp;MB for Hindi, 1.2&nbsp;MB for Gujarati and 1.0&nbsp;MB for Urdu.</p>
+        <ul class="lang-grid">
+            <li><span class="lang-chip">English</span></li>
+            <li><a class="lang-chip lang-chip-link" href="/hindi-image-to-text">Hindi <span aria-hidden="true">→</span></a></li>
+            <li><a class="lang-chip lang-chip-link" href="/gujarati-image-to-text">Gujarati <span aria-hidden="true">→</span></a></li>
+            <li><a class="lang-chip lang-chip-link" href="/urdu-image-to-text">Urdu <span aria-hidden="true">→</span></a></li>
+            <li><span class="lang-chip">Marathi</span></li>
+            <li><span class="lang-chip">Bengali</span></li>
+            <li><span class="lang-chip">Tamil</span></li>
+            <li><span class="lang-chip">Telugu</span></li>
+            <li><span class="lang-chip">Arabic</span></li>
+            <li><span class="lang-chip">Spanish</span></li>
+            <li><span class="lang-chip">French</span></li>
+            <li><span class="lang-chip">German</span></li>
+            <li><span class="lang-chip">Italian</span></li>
+            <li><span class="lang-chip">Portuguese</span></li>
+            <li><span class="lang-chip">Russian</span></li>
+            <li><span class="lang-chip">Chinese (Simplified)</span></li>
+            <li><span class="lang-chip">Japanese</span></li>
+        </ul>
+        <p class="muted">Dedicated guides with language-specific tips: <a href="/hindi-image-to-text">Hindi</a>, <a href="/gujarati-image-to-text">Gujarati</a> and <a href="/urdu-image-to-text">Urdu</a> image to text.</p>
+      </div>
+    </section>
+
+    <section class="section" id="formats" aria-labelledby="formats-title">
       <div class="container two-col">
         <div>
           <h2 id="formats-title" class="section-title">Supported formats</h2>
           <ul class="format-list">
-            <li><span class="tag">JPG / JPEG</span></li>
-            <li><span class="tag">PNG</span></li>
+            <li><span class="tag">JPG / JPEG</span> <span class="muted">photos and scans</span></li>
+            <li><span class="tag">PNG</span> <span class="muted">screenshots</span></li>
             <li><span class="tag">WebP</span></li>
             <li><span class="tag">BMP</span></li>
             <li><span class="tag">GIF</span> <span class="muted">first frame</span></li>
             <li><span class="tag">TIFF</span> <span class="muted">first page, converted in your browser</span></li>
           </ul>
-          <p class="muted">Maximum 10&nbsp;MB per image and 10 images at a time. Very large images are scaled down to 4,000&nbsp;px on the longest side before OCR to keep your browser responsive.</p>
+          <p class="muted">Limits: 10&nbsp;MB and 50 megapixels per image, 10 images at a time. Images larger than 4,000&nbsp;px on the longest side are scaled down before OCR to keep your browser responsive. SVG, HEIC and PDF files are not supported.</p>
         </div>
         <div>
-          <h2 class="section-title">OCR limitations</h2>
+          <h2 class="section-title">What affects OCR accuracy</h2>
           <ul class="bullet-list">
-            <li>Works best on clear, printed text with good contrast and at least ~20&nbsp;px tall letters.</li>
-            <li>Handwriting, decorative fonts, blurry photos and low-resolution screenshots often produce errors.</li>
-            <li>Choose the language that matches the text. Mixed-language images may need a separate pass for each language.</li>
-            <li>Complex layouts (tables, multiple columns) may not keep their original structure.</li>
-            <li>Tip: crop out unrelated parts of the image and keep the text level for better results.</li>
+            <li>Clear, printed text with good contrast works best; letters should be at least about 20&nbsp;px tall in the image.</li>
+            <li>Blur, shadows, glare, low-resolution screenshots and decorative fonts all reduce accuracy.</li>
+            <li>Handwriting is usually recognized poorly.</li>
+            <li>The selected language must match the text. Mixed-language images may need one pass per language.</li>
+            <li>Tables and multi-column layouts may not keep their original structure.</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="tips" aria-labelledby="tips-title">
+      <div class="container two-col">
+        <div>
+          <h2 id="tips-title" class="section-title">Tips for better results</h2>
+          <ol class="bullet-list numbered">
+            <li><strong>Crop to the text.</strong> Remove backgrounds, photos and unrelated text before uploading.</li>
+            <li><strong>Keep it level.</strong> Photograph pages straight on and use the rotate buttons so lines run horizontally.</li>
+            <li><strong>Use enough resolution.</strong> Zoom in before taking a screenshot of small text instead of enlarging it afterwards.</li>
+            <li><strong>Avoid glare and shadows.</strong> Even lighting matters more than camera quality.</li>
+            <li><strong>Try “Enhance image”</strong> for faint, coloured or low-contrast text, and compare the results.</li>
+          </ol>
+        </div>
+        <div>
+          <h2 class="section-title">What people use it for</h2>
+          <ul class="bullet-list">
+            <li>Copying text from screenshots of apps, websites, slides and error messages.</li>
+            <li>Turning scanned pages, letters and printed forms into editable text.</li>
+            <li>Extracting text from photos of book pages, notices, menus and signs.</li>
+            <li>Getting Hindi, Gujarati, Urdu and other non-Latin text as Unicode that you can paste anywhere.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <aside class="ad-slot" data-ad-slot="home-mid-content" aria-label="Advertisement" hidden>
+      <div class="container">
+        <p class="ad-label">Advertisement</p>
+        <div class="ad-slot-inner"></div>
+      </div>
+    </aside>
+
+    <section class="section" id="privacy-local" aria-labelledby="private-title">
+      <div class="container narrow">
+        <h2 id="private-title" class="section-title">Private by design</h2>
+        <p>Most online OCR tools upload your image to a server. This one does not: text recognition runs on your own device using <a href="https://github.com/naptha/tesseract.js" rel="noopener noreferrer" target="_blank">Tesseract.js</a>, an open-source OCR engine compiled to WebAssembly. Your images and the text you extract are never sent to this website.</p>
+        <p>To work, your browser downloads the OCR engine and language files from the public jsDelivr CDN, which receives standard request information such as your IP address. There are no accounts, cookies, analytics or ads. Read the <a href="/privacy">Privacy Policy</a> for details.</p>
       </div>
     </section>
 
@@ -253,23 +389,35 @@
         <div class="faq">
           <details>
             <summary>Are my images uploaded to a server?</summary>
-            <p>No. Your images and the extracted text are processed by JavaScript inside your browser and are never sent to our server or any OCR service. The only network downloads are the open-source OCR engine and language files, which are fetched from the jsDelivr CDN.</p>
+            <p>No. Images and the extracted text are processed by JavaScript inside your browser and are never sent to this website’s server or to any OCR service. The only downloads are the open-source OCR engine and language files, fetched from the jsDelivr CDN.</p>
+          </details>
+          <details>
+            <summary>How do I copy or download the extracted text?</summary>
+            <p>After extraction, edit the text in the box on the right if needed, then choose <strong>Copy text</strong> to put it on your clipboard or <strong>Download TXT</strong> to save a UTF-8 .txt file. For a single image the file is named after the image.</p>
           </details>
           <details>
             <summary>Why is the first extraction slower?</summary>
-            <p>The first time you use a language, your browser downloads the OCR engine (a few MB) and the trained data for that language (roughly 1–15&nbsp;MB depending on the language). Your browser caches these files, so later runs start faster.</p>
+            <p>The first time you use a language, your browser downloads the OCR engine (about 4 MB) and that language’s trained data (about 1–3 MB for most languages). Your browser caches these files, so later runs start faster.</p>
           </details>
           <details>
-            <summary>Which languages are supported?</summary>
-            <p>English, Hindi, Gujarati, Urdu, Marathi, Bengali, Tamil, Telugu, Arabic, Spanish, French, German, Italian, Portuguese, Russian, Simplified Chinese and Japanese. Language data is only downloaded when you choose that language.</p>
+            <summary>Can it read handwriting?</summary>
+            <p>Only neat, clearly separated handwriting has a chance of being read, and results are often poor. The engine is designed for printed text.</p>
           </details>
           <details>
             <summary>Can I extract text from several images at once?</summary>
-            <p>Yes. Add up to 10 images and they are processed one after another. The text from each image is combined into a single result, with the file name above each section.</p>
+            <p>Yes. Add up to 10 images and they are processed one after another. The text from each image is combined into one result, with the file name above each section.</p>
+          </details>
+          <details>
+            <summary>Can I convert a PDF?</summary>
+            <p>Not directly. Export or screenshot the PDF page as a PNG or JPG first, then add the image here.</p>
+          </details>
+          <details>
+            <summary>Does it work on mobile phones?</summary>
+            <p>Yes, in current versions of Chrome, Safari, Firefox and Edge. Large photos take longer on phones; if processing fails, try a smaller image or fewer images at once.</p>
           </details>
           <details>
             <summary>Does it work offline?</summary>
-            <p>Not reliably. The page and OCR files must be downloaded at least once, and offline use has not been tested, so please stay online while using the converter.</p>
+            <p>Not reliably. The page and OCR files must be downloaded first, and offline use has not been tested, so please stay online while using the converter.</p>
           </details>
           <details>
             <summary>Is it free?</summary>
@@ -279,19 +427,44 @@
       </div>
     </section>
 
-    <section class="section section-alt" id="about" aria-labelledby="about-title">
+    <section class="section section-alt" id="about-tool" aria-labelledby="about-title">
       <div class="container narrow">
-        <h2 id="about-title" class="section-title">About</h2>
-        <p>ImageToText OCR is a small, privacy-friendly tool for turning pictures of text into editable text. It is a static website built with plain HTML, CSS and JavaScript, and uses the open-source <a href="https://github.com/naptha/tesseract.js" rel="noopener" target="_blank">Tesseract.js</a> engine for optical character recognition.</p>
-        <p>There are no accounts, analytics, ads or trackers. Your theme choice is the only thing saved, in your own browser.</p>
+        <h2 id="about-title" class="section-title">About ImageToText OCR</h2>
+        <p>ImageToText OCR is a small, free tool for turning pictures of text into editable text. It is a static website built with plain HTML, CSS and JavaScript, and its source code is <a href="https://github.com/mohammadali10-12/image-to-text-ocr" rel="noopener noreferrer" target="_blank">published on GitHub</a>. <a href="/about">Learn more about the project</a> or <a href="/contact">get in touch</a>.</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p><strong>Privacy:</strong> images and text never leave your device. The OCR engine and language data are downloaded from cdn.jsdelivr.net when needed.</p>
-      <p class="muted">© <span id="year">2026</span> ImageToText OCR · Powered by Tesseract.js</p>
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="/">
+          <img src="/assets/favicon.svg" alt="" width="28" height="28" loading="lazy">
+          <span>ImageToText <strong>OCR</strong></span>
+        </a>
+        <p class="muted"><strong>Privacy:</strong> images and extracted text are processed in your browser and are never uploaded. The OCR engine and language data are downloaded from cdn.jsdelivr.net when needed.</p>
+      </div>
+      <nav class="footer-nav" aria-label="OCR by language">
+        <p class="footer-title">OCR by language</p>
+        <ul>
+          <li><a href="/hindi-image-to-text">Hindi image to text</a></li>
+          <li><a href="/gujarati-image-to-text">Gujarati image to text</a></li>
+          <li><a href="/urdu-image-to-text">Urdu image to text</a></li>
+          <li><a href="/#languages">All 17 languages</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Website">
+        <p class="footer-title">Website</p>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Use</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p class="muted">© <span id="year">2026</span> ImageToText OCR · OCR powered by <a href="https://github.com/naptha/tesseract.js" rel="noopener noreferrer" target="_blank">Tesseract.js</a></p>
     </div>
   </footer>
 

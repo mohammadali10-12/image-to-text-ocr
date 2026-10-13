@@ -9,12 +9,13 @@ import {
   MAX_OCR_DIMENSION,
   ImageError,
   validateFile,
-  decodeImage,
-  releaseSource,
+  inspectFile,
+  prepareItem,
   makePreviewUrl,
   makeThumbUrl,
   prepareForOcr,
 } from './image-loader.js';
+import { LANGUAGES, languageInfo } from './languages.js';
 import { formatBytes, safeFileBase, countWords, countCharacters, clamp } from './utils.js';
 
 const $ = (id) => document.getElementById(id);
@@ -180,24 +181,27 @@ function resetProgress() {
 const activeItem = () => state.items.find((item) => item.id === state.activeId) || null;
 
 function releaseItem(item) {
-  releaseSource(item.source);
   if (item.previewUrl) URL.revokeObjectURL(item.previewUrl);
   if (item.thumbUrl) URL.revokeObjectURL(item.thumbUrl);
-  item.source = null;
   item.previewUrl = null;
   item.thumbUrl = null;
+  item.released = true;
 }
 
+const fileKey = (file) => `${file.name}|${file.size}|${file.lastModified}`;
+
+/** Validates the file's real contents and builds a queue item. No decoded pixels are kept. */
 async function createItem(file) {
-  const { source, width, height } = await decodeImage(file);
+  const info = await inspectFile(file);
   const item = {
     id: state.nextId++,
+    key: fileKey(file),
     file,
+    format: info.format,
     name: file.name || 'pasted-image.png',
     size: file.size,
-    source,
-    width,
-    height,
+    width: info.width,
+    height: info.height,
     rotation: 0,
     previewUrl: null,
     previewKey: '',
@@ -205,13 +209,25 @@ async function createItem(file) {
     status: 'queued',
     text: '',
     error: null,
+    released: false,
   };
   try {
-    item.thumbUrl = await makeThumbUrl(item);
-  } catch {
-    item.thumbUrl = null;
+    await prepareItem(item);
+  } catch (err) {
+    releaseItem(item);
+    throw err;
   }
   return item;
+}
+
+/** Turns low-level browser failures (often memory exhaustion) into a helpful message. */
+function describeFailure(err, fallback) {
+  if (err instanceof ImageError || err instanceof OcrError) return err.message;
+  const text = String((err && (err.name || '')) + ' ' + (err && err.message ? err.message : err));
+  if (/RangeError|memory|allocat|Aw, Snap|InvalidStateError/i.test(text)) {
+    return 'Your browser ran out of memory while processing this image. Try a smaller image, process fewer images at once, or close other tabs.';
+  }
+  return fallback;
 }
 
 /**
@@ -229,11 +245,14 @@ async function addFiles(fileList, { replaceId = null } = {}) {
   const problems = [];
   const accepted = [];
   const slotsLeft = replaceId ? 1 : MAX_FILES - state.items.length;
+  const existing = new Set(state.items.filter((item) => item.id !== replaceId).map((item) => item.key));
 
   for (const file of files) {
     const error = validateFile(file);
     if (error) {
       problems.push(`${file.name || 'Pasted image'}: ${error}`);
+    } else if (existing.has(fileKey(file))) {
+      problems.push(`${file.name}: already added.`);
     } else if (accepted.length >= slotsLeft) {
       problems.push(`${file.name}: skipped — you can add up to ${MAX_FILES} images at a time.`);
     } else {
@@ -249,10 +268,11 @@ async function addFiles(fileList, { replaceId = null } = {}) {
   try {
     for (const file of accepted) {
       try {
-        added.push(await createItem(file));
+        const item = await createItem(file);
+        existing.add(item.key);
+        added.push(item);
       } catch (err) {
-        const message = err instanceof ImageError ? err.message : 'This image could not be opened.';
-        problems.push(`${file.name}: ${message}`);
+        problems.push(`${file.name}: ${describeFailure(err, 'This image could not be opened.')}`);
       }
     }
   } finally {
@@ -316,14 +336,26 @@ async function rotateActive(delta) {
   if (!item || state.running) return;
   item.rotation = (item.rotation + delta + 360) % 360;
   if (item.status !== 'queued') item.status = 'queued';
+  render();
   try {
     const thumb = await makeThumbUrl(item);
+    if (item.released) {
+      URL.revokeObjectURL(thumb);
+      return;
+    }
     if (item.thumbUrl) URL.revokeObjectURL(item.thumbUrl);
     item.thumbUrl = thumb;
+    renderQueue();
   } catch {
     /* keep old thumbnail */
   }
-  render();
+}
+
+/** Marks the editor with the OCR language so screen readers, fonts and RTL scripts behave correctly. */
+function applyOutputLanguage(code) {
+  const info = languageInfo(code);
+  el.output.lang = info.bcp47;
+  el.output.dir = info.dir === 'rtl' ? 'rtl' : 'auto';
 }
 
 /* ------------------------------------------------------------------ */
@@ -337,7 +369,7 @@ async function renderPreview() {
     return;
   }
 
-  const dims = `${item.width.toLocaleString()} × ${item.height.toLocaleString()} px`;
+  const dims = item.width && item.height ? `${item.width.toLocaleString()} × ${item.height.toLocaleString()} px` : 'size unknown';
   const scaled = Math.max(item.width, item.height) > MAX_OCR_DIMENSION ? ' · scaled for OCR' : '';
   const rotation = item.rotation ? ` · rotated ${item.rotation}°` : '';
   el.fileName.textContent = item.name;
@@ -355,7 +387,7 @@ async function renderPreview() {
   el.previewLoading.hidden = false;
   try {
     const url = await makePreviewUrl(item, el.enhance.checked);
-    if (token !== state.previewToken || !item.source) {
+    if (token !== state.previewToken || item.released) {
       URL.revokeObjectURL(url);
       return;
     }
@@ -363,8 +395,8 @@ async function renderPreview() {
     item.previewUrl = url;
     item.previewKey = key;
     el.previewImage.src = url;
-  } catch {
-    showAlert('error', 'The preview could not be created. The image may be too large for your device.');
+  } catch (err) {
+    if (token === state.previewToken) showAlert('error', describeFailure(err, 'The preview could not be created. The image may be too large for your device.'));
   } finally {
     if (token === state.previewToken) el.previewLoading.hidden = state.loadingFiles === 0;
   }
@@ -487,8 +519,7 @@ function composeResult() {
 }
 
 function friendlyError(err) {
-  if (err instanceof OcrError || err instanceof ImageError) return err.message;
-  return `Something went wrong: ${err && err.message ? err.message : String(err)}`;
+  return describeFailure(err, `Something went wrong: ${err && err.message ? err.message : String(err)}`);
 }
 
 async function runOcr(mode = 'all') {
@@ -599,6 +630,7 @@ async function runOcr(mode = 'all') {
   }
 
   if (!cancelled) {
+    applyOutputLanguage(lang);
     el.output.value = composed;
     state.editedSinceOcr = false;
     state.resultBaseName = state.items.length === 1
@@ -800,6 +832,7 @@ function bindEvents() {
   });
   el.language.addEventListener('change', () => {
     for (const item of state.items) if (item.status !== 'error') item.status = 'queued';
+    if (!el.output.value) applyOutputLanguage(el.language.value);
     render();
   });
 
@@ -826,9 +859,20 @@ function bindEvents() {
   });
 }
 
+/** Language landing pages set <body data-ocr-lang="hin"> to preselect their language. */
+function applyDefaultLanguage() {
+  const preset = document.body.dataset.ocrLang;
+  if (preset && Object.prototype.hasOwnProperty.call(LANGUAGES, preset)
+    && el.language.querySelector(`option[value="${preset}"]`)) {
+    el.language.value = preset;
+  }
+  applyOutputLanguage(el.language.value);
+}
+
 function init() {
   initThemeToggle($('theme-toggle'));
-  el.year.textContent = String(new Date().getFullYear());
+  applyDefaultLanguage();
+  if (el.year) el.year.textContent = String(new Date().getFullYear());
   bindEvents();
   initDragAndDrop();
   initPaste();

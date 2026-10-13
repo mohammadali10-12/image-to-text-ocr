@@ -1,0 +1,5 @@
+# ImageToText OCR — all public pages may be crawled.
+User-agent: *
+Allow: /
+
+Sitemap: https://image-to-text-ocr-ten.vercel.app/sitemap.xml

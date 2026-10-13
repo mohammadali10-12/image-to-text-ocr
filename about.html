@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About ImageToText OCR – Free Browser-Based OCR Tool</title>
+  <meta name="description" content="What ImageToText OCR is, how its in-browser text recognition works, which languages it supports and who maintains it.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://image-to-text-ocr-ten.vercel.app/about">
+  <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1220" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ImageToText OCR">
+  <meta property="og:title" content="About ImageToText OCR – Free Browser-Based OCR Tool">
+  <meta property="og:description" content="What ImageToText OCR is, how its in-browser text recognition works, which languages it supports and who maintains it.">
+  <meta property="og:url" content="https://image-to-text-ocr-ten.vercel.app/about">
+  <meta property="og:image" content="https://image-to-text-ocr-ten.vercel.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ImageToText OCR — free image to text converter that runs in your browser">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About ImageToText OCR – Free Browser-Based OCR Tool">
+  <meta name="twitter:description" content="What ImageToText OCR is, how its in-browser text recognition works, which languages it supports and who maintains it.">
+  <meta name="twitter:image" content="https://image-to-text-ocr-ten.vercel.app/assets/og-image.jpg">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Applies the saved theme before first paint to avoid a flash. -->
+  <script src="/js/theme-init.js"></script>
+  <script type="module" src="/js/site.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://image-to-text-ocr-ten.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://image-to-text-ocr-ten.vercel.app/about"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="ImageToText OCR home">
+        <img src="/assets/favicon.svg" alt="" width="32" height="32">
+        <span>ImageToText <strong>OCR</strong></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#languages">Languages</a>
+        <a href="/about" aria-current="page">About</a>
+      </nav>
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Toggle dark mode">
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container narrow prose-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol><li><a href="/">Home</a></li><li aria-current="page">About</li></ol>
+      </nav>
+      <article class="prose">
+        <h1>About ImageToText OCR</h1>
+        <p class="lead">ImageToText OCR is a free website for extracting text from images. It was built to be simple, fast and private: your images are processed on your own device instead of being uploaded.</p>
+
+        <h2>How it works</h2>
+        <p>The site is a static web page made with HTML, CSS and JavaScript. When you extract text, your browser loads <a href="https://github.com/naptha/tesseract.js" rel="noopener noreferrer" target="_blank">Tesseract.js</a> — a WebAssembly port of the open-source Tesseract OCR engine — together with the trained data for the language you chose. Recognition then runs in a background worker inside your browser.</p>
+        <p>Because the work happens on your device, speed depends on your device: a modern laptop usually reads a page in a few seconds, while older phones take longer.</p>
+
+        <h2>What it can do</h2>
+        <ul>
+          <li>Read printed text from JPG, PNG, WebP, BMP, GIF and TIFF images.</li>
+          <li>Recognize 17 languages, including English, Hindi, Gujarati, Urdu, Marathi, Bengali, Tamil, Telugu, Arabic, Chinese and Japanese.</li>
+          <li>Process up to 10 images in one batch, with rotation and an optional contrast enhancement.</li>
+          <li>Let you edit, copy and download the text as a plain .txt file.</li>
+        </ul>
+
+        <h2>What it can’t do</h2>
+        <p>OCR is never perfect. Handwriting, low-quality photos, unusual fonts and complex layouts reduce accuracy, and the tool does not open PDF, HEIC or SVG files. Always review the result before relying on it.</p>
+
+        <h2>Who runs this site</h2>
+        <p>ImageToText OCR is an independent project. Its source code is public at <a href="https://github.com/mohammadali10-12/image-to-text-ocr" rel="noopener noreferrer" target="_blank">github.com/mohammadali10-12/image-to-text-ocr</a>. Questions, bug reports and suggestions are welcome — see the <a href="/contact">Contact</a> page.</p>
+
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="/">
+          <img src="/assets/favicon.svg" alt="" width="28" height="28" loading="lazy">
+          <span>ImageToText <strong>OCR</strong></span>
+        </a>
+        <p class="muted"><strong>Privacy:</strong> images and extracted text are processed in your browser and are never uploaded. The OCR engine and language data are downloaded from cdn.jsdelivr.net when needed.</p>
+      </div>
+      <nav class="footer-nav" aria-label="OCR by language">
+        <p class="footer-title">OCR by language</p>
+        <ul>
+          <li><a href="/hindi-image-to-text">Hindi image to text</a></li>
+          <li><a href="/gujarati-image-to-text">Gujarati image to text</a></li>
+          <li><a href="/urdu-image-to-text">Urdu image to text</a></li>
+          <li><a href="/#languages">All 17 languages</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Website">
+        <p class="footer-title">Website</p>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Use</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p class="muted">© <span id="year">2026</span> ImageToText OCR · OCR powered by <a href="https://github.com/naptha/tesseract.js" rel="noopener noreferrer" target="_blank">Tesseract.js</a></p>
+    </div>
+  </footer>
+</body>
+</html>

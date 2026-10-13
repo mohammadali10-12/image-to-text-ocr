@@ -733,7 +733,7 @@ kbd {
 
 .output-actions { margin-top: 0; }
 .output-actions .btn { padding: 0 var(--space-3); }
-.accuracy-note { margin: 0; font-size: 0.82rem; color: var(--text-faint); }
+.accuracy-note { margin: 0; font-size: 0.82rem; color: var(--text-muted); }
 
 /* Spinner */
 .spinner {
@@ -844,11 +844,116 @@ kbd {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  padding: var(--space-6) 0;
+  padding: var(--space-7) 0 var(--space-5);
   border-top: 1px solid var(--border);
   font-size: 0.9rem;
 }
-.footer-inner { display: grid; gap: var(--space-2); }
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-6);
+}
+.footer-about .brand { margin-bottom: var(--space-3); }
+.footer-about p { max-width: 460px; }
+.footer-title {
+  margin: 0 0 var(--space-3);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.footer-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.footer-nav a { color: var(--text); text-decoration: none; }
+.footer-nav a:hover { color: var(--primary); text-decoration: underline; }
+.footer-bottom {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- Content additions ---------- */
+.section-lead { max-width: 760px; color: var(--text-muted); margin-bottom: var(--space-5); }
+.steps-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.bullet-list.numbered { padding-left: 1.4rem; }
+.bullet-list strong { color: var(--text); }
+
+.lang-grid {
+  list-style: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.lang-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 38px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.92rem;
+  font-weight: 550;
+}
+.lang-chip-link {
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+.lang-chip-link:hover { background: var(--primary-soft); color: var(--primary); }
+
+.breadcrumbs { padding-top: var(--space-4); font-size: 0.86rem; }
+.breadcrumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); color: var(--text-muted); }
+.breadcrumbs li + li::before { content: "/"; margin-right: var(--space-2); color: var(--text-faint); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--primary); }
+.hero .breadcrumbs { padding: 0; }
+
+.prose-page { padding-bottom: var(--space-8); }
+.prose { padding-top: var(--space-5); }
+.prose h1 {
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  font-weight: 780;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-4);
+}
+.prose h2 { font-size: 1.35rem; margin: var(--space-6) 0 var(--space-3); }
+.prose h3 { font-size: 1.08rem; margin: var(--space-5) 0 var(--space-2); }
+.prose ul { padding-left: 1.2rem; display: grid; gap: var(--space-2); margin: 0 0 var(--space-4); }
+.prose .lead { font-size: 1.1rem; color: var(--text-muted); }
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  background: var(--bg-alt);
+}
+.prose .btn { text-decoration: none; }
+
+/* Reserved advertising positions: hidden until ads are approved and enabled (see docs/ADSENSE.md).
+   Placed between content sections only — never inside or next to the converter controls. */
+.ad-slot { padding: var(--space-5) 0; }
+.ad-slot .container { display: grid; justify-items: center; gap: var(--space-2); }
+.ad-label {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ad-slot-inner {
+  width: 100%;
+  max-width: 970px;
+  min-height: 250px; /* reserves space to avoid layout shift when an ad loads */
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
 
 /* ---------- Toasts ---------- */
 .toast-region {
@@ -898,8 +1003,10 @@ kbd {
 @media (max-width: 960px) {
   .workspace { grid-template-columns: minmax(0, 1fr); }
   .editor, .editor-textarea { min-height: 300px; }
-  .steps { grid-template-columns: minmax(0, 1fr); }
+  .steps, .steps-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .two-col { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+  .footer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .footer-about { grid-column: 1 / -1; }
 }
 
 @media (max-width: 600px) {
@@ -908,7 +1015,7 @@ kbd {
   .header-inner { gap: var(--space-2); }
   .brand span { font-size: 0.98rem; }
   .site-nav a { padding: var(--space-2); font-size: 0.86rem; }
-  .site-nav a[href="#top"] { display: none; }
+  .site-nav a[href="/"] { display: none; }
   .hero { padding: var(--space-7) 0 var(--space-5); }
   .panel { padding: var(--space-4); border-radius: var(--radius); }
   .dropzone { min-height: 220px; padding: var(--space-5) var(--space-4); }
@@ -916,6 +1023,7 @@ kbd {
   .field-inline .select { flex: 1 1 0; min-width: 0; width: 100%; max-width: none; }
   .panel-actions .btn { flex: 1 1 auto; }
   .section { padding: var(--space-7) 0; }
+  .steps, .steps-4 { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 480px) {
@@ -923,8 +1031,10 @@ kbd {
   :root { --header-h: 96px; }
   .header-inner { height: auto; flex-wrap: wrap; row-gap: 0; padding-top: var(--space-2); }
   .theme-toggle { order: 2; }
-  .site-nav { order: 3; width: 100%; justify-content: center; border-top: 1px solid var(--border); padding: var(--space-1) 0; }
-  .site-nav a[href="#top"] { display: inline-block; }
+  .site-nav { order: 3; width: 100%; justify-content: space-between; border-top: 1px solid var(--border); padding: var(--space-1) 0; }
+  .site-nav a { padding: var(--space-2) var(--space-1); }
+  .footer-grid { grid-template-columns: minmax(0, 1fr); }
+  .site-nav a[href="/"] { display: inline-block; }
 }
 
 @media (prefers-reduced-motion: reduce) {
