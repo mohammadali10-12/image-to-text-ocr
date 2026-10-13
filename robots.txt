@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://image-to-text-ocr-ten.vercel.app/sitemap.xml
+Sitemap: https://imgtotextocr.com/sitemap.xml

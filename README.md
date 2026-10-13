@@ -55,7 +55,7 @@ image-to-text-ocr/
 
 The header, footer and converter markup are repeated in each page that uses them (there is no build step). When you change one of them, apply the same change to `index.html` and the three language pages.
 
-The production URL `https://image-to-text-ocr-ten.vercel.app` is written into canonical tags, Open Graph tags, JSON-LD, `robots.txt` and `sitemap.xml`. If you move to a custom domain, search the repository for it and replace every occurrence.
+The production URL `https://imgtotextocr.com` is written into canonical tags, Open Graph tags, JSON-LD, `robots.txt` and `sitemap.xml`. If you move to a custom domain, search the repository for it and replace every occurrence.
 
 ## How the OCR works
 

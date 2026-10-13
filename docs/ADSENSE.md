@@ -19,7 +19,7 @@ The sections below were written before the code was added and remain the referen
 ## Blockers to resolve first (your action)
 
 1. **Hosting plan.** The site is on Vercel. Vercel's [Fair Use Guidelines](https://vercel.com/docs/limits/fair-use-guidelines) restrict **Hobby** (free) accounts to non-commercial use and explicitly list "the inclusion of advertisements, including … Google AdSense" as commercial usage. Before showing ads, either upgrade the project's team to **Vercel Pro** (see [vercel.com/pricing](https://vercel.com/pricing)) or move hosting to a provider whose free tier allows commercial use.
-2. **Domain (recommended, not strictly required).** `vercel.app` is on the Public Suffix List, so `image-to-text-ocr-ten.vercel.app` is treated as its own site and an `ads.txt` at its root is valid. A custom domain is still recommended: it is easier to brand, survives a hosting move, and avoids depending on a shared platform domain. If you buy one, update the URLs listed in `docs/SEARCH-CONSOLE.md` first.
+2. **Domain (recommended, not strictly required).** `vercel.app` is on the Public Suffix List, so `imgtotextocr.com` is treated as its own site and an `ads.txt` at its root is valid. A custom domain is still recommended: it is easier to brand, survives a hosting move, and avoids depending on a shared platform domain. If you buy one, update the URLs listed in `docs/SEARCH-CONSOLE.md` first.
 3. **Contact method.** The Contact page currently points to GitHub Issues. Adding a contact email address you control is recommended for review.
 4. **Traffic and age.** Brand-new sites with little traffic are often asked to wait. Applying after the pages are indexed and receiving some organic visits is more likely to succeed (not guaranteed).
 
@@ -34,7 +34,7 @@ The sections below were written before the code was added and remain the referen
 
 1. Resolve the hosting-plan blocker above.
 2. Make sure the site is indexed (see `docs/SEARCH-CONSOLE.md`).
-3. Sign in at <https://adsense.google.com> → add the site `image-to-text-ocr-ten.vercel.app` (or your custom domain).
+3. Sign in at <https://adsense.google.com> → add the site `imgtotextocr.com` (or your custom domain).
 4. AdSense shows a verification snippet. Choose the **ads.txt** or **meta tag** method if offered; otherwise add the AdSense `<script>` to the `<head>` of `index.html` (see "Enabling ads" for the CSP change it needs).
 5. In AdSense → **Privacy & messaging**, create a **European regulations (GDPR)** message so a Google-certified consent platform is shown to visitors in the EEA, UK and Switzerland. Google requires a certified CMP integrated with the IAB TCF to serve personalized ads to those visitors ([Google's requirements](https://support.google.com/admanager/answer/13554116)). Also review the **US state regulations** message.
 6. Update the Privacy Policy (template below) **before** ads go live.

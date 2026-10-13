@@ -1,6 +1,8 @@
 # Google Search Console setup
 
-Production URL used in canonicals and the sitemap: **https://image-to-text-ocr-ten.vercel.app**
+Production URL used in canonicals and the sitemap: **https://imgtotextocr.com** (custom domain, registered at Hostinger). The old address `image-to-text-ocr-ten.vercel.app` permanently redirects (308) to it.
+
+> **Recommended now:** add a **Domain** property for `imgtotextocr.com` (verify with a DNS TXT record in Hostinger → DNS records). It covers `https://`, `http://` and `www`. The older URL-prefix property for the vercel.app address can stay; it will show the redirect.
 
 > If you later move to a custom domain, update `SITE` everywhere it appears (canonical, `og:url`, `og:image`, JSON-LD, `robots.txt`, `sitemap.xml`; search the repo for `image-to-text-ocr-ten.vercel.app`), add the domain in Vercel, and set the old `vercel.app` URL to redirect to it. Then add the new domain as a Search Console property.
 
