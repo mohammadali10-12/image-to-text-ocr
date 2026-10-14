@@ -4,13 +4,13 @@ Production URL used in canonicals and the sitemap: **https://imgtotextocr.com** 
 
 > **Recommended now:** add a **Domain** property for `imgtotextocr.com` (verify with a DNS TXT record in Hostinger → DNS records). It covers `https://`, `http://` and `www`. The older URL-prefix property for the vercel.app address can stay; it will show the redirect.
 
-> If you later move to a custom domain, update `SITE` everywhere it appears (canonical, `og:url`, `og:image`, JSON-LD, `robots.txt`, `sitemap.xml`; search the repo for `image-to-text-ocr-ten.vercel.app`), add the domain in Vercel, and set the old `vercel.app` URL to redirect to it. Then add the new domain as a Search Console property.
+> If the domain ever changes again, update the URL everywhere it appears (canonical, `og:url`, `og:image`, JSON-LD, `robots.txt`, `sitemap.xml`, the host redirect in `vercel.json`).
 
 ## 1. Verify ownership
 
-`vercel.app` is a shared domain, so you cannot use a *Domain* property (that requires DNS access). Use a **URL-prefix** property:
+Preferred: a **Domain** property for `imgtotextocr.com`, verified with a DNS TXT record in Hostinger. Alternatively a **URL-prefix** property:
 
-1. Go to <https://search.google.com/search-console> → **Add property** → **URL prefix** → enter `https://image-to-text-ocr-ten.vercel.app/`.
+1. Go to <https://search.google.com/search-console> → **Add property** → **URL prefix** → enter `https://imgtotextocr.com/`.
 2. Choose one verification method:
    - **HTML file (simplest):** download the `googleXXXXXXXX.html` file Google gives you, put it in the repository root, commit and push, wait for Vercel to deploy, then click **Verify**. Keep the file in the repo permanently.
    - **HTML tag:** add the `<meta name="google-site-verification" content="…">` tag to the `<head>` of `index.html`, deploy, then verify.
@@ -22,7 +22,7 @@ Production URL used in canonicals and the sitemap: **https://imgtotextocr.com** 
 
 1. In the property, open **Indexing → Sitemaps**.
 2. Enter `sitemap.xml` and click **Submit**.
-3. The status should become *Success* with 8 discovered URLs. If it shows *Couldn't fetch*, open `https://image-to-text-ocr-ten.vercel.app/sitemap.xml` in a browser and confirm it loads.
+3. The status should become *Success* with 8 discovered URLs. If it shows *Couldn't fetch*, open `https://imgtotextocr.com/sitemap.xml` in a browser and confirm it loads.
 
 ## 3. Inspect and request indexing
 
