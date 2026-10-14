@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://imgtotextocr.com/sitemap.xml
+Sitemap: https://www.imgtotextocr.com/sitemap.xml
